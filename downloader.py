@@ -19,7 +19,7 @@ print(Fore.GREEN + 'Handle of the user you want songs from (Example: "jamesblake
 # Ask for users auth token
 handle = input("Artist Handle: ")
 
-url = 'https://dev.vault.fm/graphql'
+url = 'https://vault.fm/graphql'
 
 def main():
     data = '{"query": "query ArtistByHandle($input: QueryArtistByLinkInput!) { artistByLink(input: $input) { mainVaultId } }", "variables": {"input":{"link":"' + handle + '"}}}'
