@@ -19,8 +19,9 @@ print(Fore.GREEN + 'Handle of the user you want songs from (Example: "jamesblake
 # Ask for users auth token
 handle = input("Artist Handle: ")
 
+url = 'https://dev.vault.fm/graphql'
+
 def main():
-    url = 'https://dev.vault.fm/graphql'  # Replace with your GraphQL endpoint URL
     data = '{"query": "query ArtistByHandle($input: QueryArtistByLinkInput!) { artistByLink(input: $input) { mainVaultId } }", "variables": {"input":{"link":"' + handle + '"}}}'
 
     headers = {
@@ -36,7 +37,6 @@ def main():
     getSongsFromIds(vaultId)
 
 def getSongsFromIds(vaultId):
-    url = 'https://dev.vault.fm/graphql'  # Replace with your GraphQL endpoint URL
     data = '{"query":"query VaultTrackIds($vaultId:UUID!){vaultFromId(vaultId:$vaultId){id trackIds}}","variables":{"vaultId":"' + vaultId + '"}}'
 
     headers = {
@@ -56,7 +56,6 @@ def getSongsFromIds(vaultId):
         time.sleep(1)
 
 def getSong(songId):
-    url = 'https://dev.vault.fm/graphql'  # Replace with your GraphQL endpoint URL
     data = '{"query":"query TrackContentById($vaultContentId:UUID!){vaultContentById(vaultContentId:$vaultContentId){__typename id ...on VaultTrack{createdAt title caption artistCdnUrl vault{id artist:artistProfile{id name linkValue profileImage{id url}}}}}getSignedTrackContent(trackContentId:$vaultContentId){__typename ...on QueryGetSignedTrackContentSuccess{data}}}","variables":{"vaultContentId":"' + songId + '"}}'
 
     headers = {
