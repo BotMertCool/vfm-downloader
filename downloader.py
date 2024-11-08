@@ -33,7 +33,6 @@ def main():
 
 
     response_data = response.json()
-    print(response_data)
     vaultId = response_data['data']['artistByLink']['mainVaultId']
 
     getSongsFromIds(vaultId)
@@ -47,9 +46,7 @@ def getSongsFromIds(vaultId):
     }
 
     response = requests.post(url, headers=headers, data=data)
-    print(response)
     response_data = response.json()
-    print(response_data)
 
     # Access the track IDs
     track_ids = response_data['data']['vaultFromId']['trackIds']
@@ -70,7 +67,6 @@ def getSong(songId):
 
     response_data = response.json()
     set_cookie_value = response.headers.get('Set-Cookie')
-    print(response_data)
     audio_file_url = response_data['data']['getSignedTrackContent']['data']
     filename = response_data['data']['vaultContentById']['title']
     
