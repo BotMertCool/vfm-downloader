@@ -19,7 +19,7 @@ print(Fore.GREEN + 'Handle of the user you want songs from (Example: "jamesblake
 # Ask for users auth token
 handle = input("Artist Handle: ")
 
-url = 'https://vault.fm/graphql'
+url = 'https://dev.vault.fm/graphql'
 
 def main():
     data = '{"query": "query ArtistByHandle($input: QueryArtistByLinkInput!) { artistByLink(input: $input) { mainVaultId } }", "variables": {"input":{"link":"' + handle + '"}}}'
@@ -27,6 +27,8 @@ def main():
     headers = {
         'Content-Type': 'application/json',
         'Auth-Token': authToken,
+        'cf-access-client-id':'100b1d1b1597bfdab0c5a75ddb83bacb.access',
+        'cf-access-client-secret':'8fb68e44281906bf4aba96a194994fcb56b957702ea70021e436ba74ad1db603'
     }
 
     response = requests.post(url, headers=headers, data=data)
@@ -44,6 +46,8 @@ def getSongsFromIds(vaultId):
     headers = {
         'Content-Type': 'application/json',
         'Auth-Token': authToken,
+        'cf-access-client-id':'100b1d1b1597bfdab0c5a75ddb83bacb.access',
+        'cf-access-client-secret':'8fb68e44281906bf4aba96a194994fcb56b957702ea70021e436ba74ad1db603'
     }
 
     response = requests.post(url, headers=headers, data=data)
@@ -64,6 +68,8 @@ def getSong(songId):
     headers = {
         'Content-Type': 'application/json',
         'Auth-Token': authToken,
+        'cf-access-client-id':'100b1d1b1597bfdab0c5a75ddb83bacb.access',
+        'cf-access-client-secret':'8fb68e44281906bf4aba96a194994fcb56b957702ea70021e436ba74ad1db603'
     }
 
     response = requests.post(url, headers=headers, data=data)
